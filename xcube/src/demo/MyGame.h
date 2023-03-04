@@ -19,6 +19,7 @@ class MyGame : public AbstractGame {
 		/* GAMEPLAY */
 		int score, numKeys, lives;
 		bool gameWon;
+		Animation anim;
 
 		void handleKeyEvents();
 		void update();

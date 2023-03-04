@@ -11,6 +11,7 @@ MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false
         k->pos = Point2(getRandom(0, 750), getRandom(0, 550));
         gameKeys.push_back(k);
     }
+	anim.testing();
 }
 
 MyGame::~MyGame() {
