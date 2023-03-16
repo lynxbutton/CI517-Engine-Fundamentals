@@ -1,8 +1,13 @@
 #include "MyEngineSystem.h"
 
-void Animation::testing()
+Animation::Animation()
 {
-	debug("Animation Test Complete");
+	debug("Empty Animation file created.");
+}
+
+Animation::Animation(std::string CSVlocation)
+{
+	assignCSVContent(readAnimCSV(CSVlocation));
 }
 
 //Will read given CSV file and return its contents in an array (string)
@@ -36,13 +41,17 @@ std::vector<std::string> Animation::readAnimCSV(std::string fileName)
 		}
 	}
 	else
-		debug("Could not open the file"); run = false;
+	{
+		debug("Could not open the file"); 
+		run = false;
+	}
 
 	file.close();
 
 	return row;
 }
 
+//error checks content and assigns to the correct variables within the class
 void Animation::assignCSVContent(std::vector<std::string> content)
 {
 	for (int i = 0; i < content.size(); i++)
@@ -56,7 +65,7 @@ void Animation::assignCSVContent(std::vector<std::string> content)
 				break;
 			case 1:
 				//Catching if stoi returns any errors.
-				try { //Make sure it's bigger than zero ------ possibly catch a maxiumn frame rate? (60fps???)
+				try { //Make sure it's bigger than zero
 					if (std::stoi(content[1]) > 0) { frameRate = std::stoi(content[1]);}
 					else { debug("Frame rate not compatible."); run = false;}
 				}
@@ -154,12 +163,11 @@ void Animation::assignCSVContent(std::vector<std::string> content)
 	//ensure that the correct amount of keyframes has been given
 	if (keyFrames.size() != playBackTime)
 	{
-		debug("More keyframes required for playback.");
+		if (keyFrames.size() > playBackTime)
+		{
+			debug("Less keyframes required for playback.");
+		}
+		else debug("More keyframes required for playback.");
 		run = false;
 	}
-}
-
-void Animation::setUpAnim()
-{
-
 }

@@ -44,10 +44,10 @@ class Animation {
 		std::string jsonLoc;
 
 	public:
-		void testing();
+		Animation();
+		Animation(std::string CSVlocation);
 		std::vector<std::string> readAnimCSV(std::string fileName);
 		void assignCSVContent(std::vector<std::string> content);
-		void Animation::setUpAnim();
 
 		//make a constructor that reads from a given file
 
