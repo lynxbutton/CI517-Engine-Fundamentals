@@ -24,14 +24,14 @@ class MyEngineSystem {
 class Animation {
 	private:
 		std::string animName;
-		int x, y, w, h;
-		int frameRate, playBackTime;
+		int x, y, w, h; // rect features
+		int frameRate, playBackTime, spritesInImage;
+		int spX, spY, spW, spH; //sprite locations
 		int currFrame = 0;
+		//json file vars
+		bool jsonFile = NULL;
 		bool run = true;
-		//int keyFrames[playBackTime]; //array?
-		// sprite sheet
-		// amount of frames in spritesheet
-		//int spriteFrames;
+		std::vector<int> keyFrames;
 
 		//Textures & Graphics
 		SDL_Surface* surface;
@@ -41,7 +41,7 @@ class Animation {
 		
 		//file locations
 		std::string spriteSheetLoc;
-		std::fstream file;
+		std::string jsonLoc;
 
 	public:
 		void testing();

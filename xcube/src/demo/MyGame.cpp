@@ -12,8 +12,7 @@ MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false
         gameKeys.push_back(k);
     }
 	//ANIMATION TEST FUNCTIONS
-	anim.testing();
-	anim.assignCSVContent(anim.readAnimCSV("AnimCSVs/testAnim.csv"));
+	anim.assignCSVContent(anim.readAnimCSV("Animations/CSV/testAnim.csv"));
 }
 
 MyGame::~MyGame() {
