@@ -85,7 +85,9 @@ void Animation::assignCSVContent(std::vector<std::string> content)
 				try { //catching if nothing is entered into the field
 					int locLen = content[3].length();
 					if (content[3].substr(locLen - 4, locLen) == ".png" || content[3].substr(locLen - 4, locLen) == ".jpg")
-					{ spriteSheetLoc = content[3];} //make sure it ends w a suitable file extension!
+					{ 
+						spriteSheetLoc = content[3];
+					} //make sure it ends w a suitable file extension!
 					else
 					{ debug("Animation location is invalid."); run = false;}
 				}
@@ -170,4 +172,74 @@ void Animation::assignCSVContent(std::vector<std::string> content)
 		else debug("More keyframes required for playback.");
 		run = false;
 	}
+}
+
+void Animation::preload() // change to just preload json
+{
+	if (run) //if an error hasn't already occured
+	{
+		//preload function will split into two if theres a json file
+		if (jsonFile)
+		{
+			//act for json file.
+			debug("theres a json?");
+		}
+		else
+		{
+			debug("Sprites will be rendered without JSON file.");
+		}
+		
+		texture = ResourceManager::loadTexture(spriteSheetLoc, SDL_COLOR_WHITE);
+		/*std::cout << spriteSheetLoc;
+		//ensure the image has been loaded and converted correctly
+		surface = IMG_Load(spriteSheetLoc.c_str());
+		if (surface == NULL || GFX::createTextureFromSurface(surface) == NULL)
+		{
+			debug("Spritesheet couldn't be loaded. ", SDL_GetError());
+			run = false;
+		}
+		else
+		{
+			texture = GFX::createTextureFromSurface(surface);
+			//std::cout << SDL_GetError();
+			SDL_FreeSurface(surface);
+			surface = NULL;
+		}*/
+	}
+}
+
+void Animation::render(std::shared_ptr<GraphicsEngine> gfx)
+{
+	if (run)
+	{
+		//set source and dest rects
+		if (jsonFile)
+		{
+			//act for json file.
+			debug("theres a json?");
+		}
+		else
+		{
+			//srcRect = new SDL_Rect{ 0,0,spW,spH };
+			//destRect = new SDL_Rect{ 15,15,spW,spH };
+			destRect = new SDL_Rect{ 15,15,128,48};
+		}
+
+		//check source and dest rects are not NULL
+		if (destRect != NULL && texture != NULL && gfx != NULL)
+		{
+			gfx->drawTexture(texture, destRect);
+		}
+		else
+		{
+			debug("Rect is not ok");
+			//destRect = new SDL_Rect{ 5,5,10,10 };
+		}
+	}
+}
+
+void Animation::quit()
+{
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(texture);
 }

@@ -3,6 +3,7 @@
 
 #include "../EngineCommon.h"
 #include "../GraphicsEngine.h"
+#include "../ResourceManager.h"
 
 #include <iostream>
 #include <fstream>
@@ -22,6 +23,7 @@ class MyEngineSystem {
 };
 
 class Animation {
+	friend class XCube2Engine;
 	private:
 		std::string animName;
 		int x, y, w, h; // rect features
@@ -36,8 +38,8 @@ class Animation {
 		//Textures & Graphics
 		SDL_Surface* surface;
 		SDL_Texture* texture;
-		SDL_Rect* rect;
-		GraphicsEngine* gfx;
+		SDL_Rect* srcRect;
+		SDL_Rect* destRect = NULL;
 		
 		//file locations
 		std::string spriteSheetLoc;
@@ -49,7 +51,9 @@ class Animation {
 		std::vector<std::string> readAnimCSV(std::string fileName);
 		void assignCSVContent(std::vector<std::string> content);
 
-		//make a constructor that reads from a given file
+		void Animation::preload();
+		void Animation::render(std::shared_ptr<GraphicsEngine> gfx);
+		void Animation::quit();
 
 		//Getters & Setters
 		int getXPos() { return x; };

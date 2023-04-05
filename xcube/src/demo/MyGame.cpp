@@ -11,8 +11,9 @@ MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false
         k->pos = Point2(getRandom(0, 750), getRandom(0, 550));
         gameKeys.push_back(k);
     }
-	//ANIMATION TEST FUNCTIONS
+	//ANIMATION STARTING FUNCTS ---------------------------------------------------------------------------------
 	Animation anim("Animations/CSV/testAnim.csv");
+	anim.preload();
 }
 
 MyGame::~MyGame() {
@@ -67,6 +68,9 @@ void MyGame::render() {
 	for (auto key : gameKeys)
         if (key->isAlive)
 		    gfx->drawCircle(key->pos, 5);
+
+	//PLACE FOR ANIMATION RENDERING -------------------------------------------------------------------------------
+	anim.render(gfx);
 }
 
 void MyGame::renderUI() {
