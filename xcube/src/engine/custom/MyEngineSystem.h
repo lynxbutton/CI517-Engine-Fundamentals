@@ -15,6 +15,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+
 class MyEngineSystem {
 	friend class XCube2Engine;
 	private:
@@ -27,23 +28,33 @@ class Animation {
 	private:
 		std::string animName;
 		int x, y, w, h; // rect features
-		int frameRate, playBackTime, spritesInImage;
-		int spX, spY, spW, spH; //sprite locations
+		int frameRate, playBackTime, spritesInRow, spritesInColumn;
+		int spX, spY, spW, spH, scW, scH; //sprite locations
 		int currFrame = 0;
+		int frameNum = 0; // only changed by change sprite funct
+		SDL_RendererFlip animFlip;
 		//json file vars
-		bool jsonFile = NULL;
+		bool jsonFile = false;
 		bool run = true;
 		std::vector<int> keyFrames;
 
 		//Textures & Graphics
-		SDL_Surface* surface;
 		SDL_Texture* texture;
 		SDL_Rect* srcRect;
-		SDL_Rect* destRect = NULL;
+		SDL_Rect* destRect;
 		
 		//file locations
 		std::string spriteSheetLoc;
 		std::string jsonLoc;
+
+		//movement vars
+		bool frameStarted = false;
+		bool addFrames = false;
+		bool pBComplete = false;
+		int seconds = 0;
+		int frame = 0;
+		int mainFJ, subFLeft;
+		int timer = 0;
 
 	public:
 		Animation();
@@ -52,7 +63,10 @@ class Animation {
 		void assignCSVContent(std::vector<std::string> content);
 
 		void Animation::preload();
+		SDL_Rect* Animation::chooseSprite(int curr);
+		int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe);
 		void Animation::render(std::shared_ptr<GraphicsEngine> gfx);
+
 		void Animation::quit();
 
 		//Getters & Setters

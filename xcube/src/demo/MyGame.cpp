@@ -12,8 +12,8 @@ MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false
         gameKeys.push_back(k);
     }
 	//ANIMATION STARTING FUNCTS ---------------------------------------------------------------------------------
-	Animation anim("Animations/CSV/testAnim.csv");
-	anim.preload();
+	anim = new Animation("Animations/CSV/testAnim.csv");
+	anim->preload();
 }
 
 MyGame::~MyGame() {
@@ -70,7 +70,15 @@ void MyGame::render() {
 		    gfx->drawCircle(key->pos, 5);
 
 	//PLACE FOR ANIMATION RENDERING -------------------------------------------------------------------------------
-	anim.render(gfx);
+	anim->render(gfx);
+
+	/*SDL_Texture* texture = ResourceManager::loadTexture("Animations/Images/hero.png", SDL_COLOR_WHITE);
+	if (texture != nullptr)
+	{
+		debug("not null 222");
+	}
+	SDL_Rect rect = { 15,15,128,48 };
+	gfx->drawTexture(texture, &rect, SDL_FLIP_NONE);*/
 }
 
 void MyGame::renderUI() {
