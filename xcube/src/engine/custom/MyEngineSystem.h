@@ -27,7 +27,7 @@ class Animation {
 	friend class XCube2Engine;
 	private:
 		std::string animName;
-		int x, y, w, h; // rect features
+		int x = 0, y = 0; // rect features
 		int frameRate, playBackTime, spritesInRow, spritesInColumn;
 		int spX, spY, spW, spH, scW, scH; //sprite locations
 		int currFrame = 0;
@@ -35,6 +35,7 @@ class Animation {
 		SDL_RendererFlip animFlip;
 		//json file vars
 		bool jsonFile = false;
+		bool looped = false;
 		bool run = true;
 		std::vector<int> keyFrames;
 
@@ -51,7 +52,7 @@ class Animation {
 		bool frameStarted = false;
 		bool addFrames = false;
 		bool pBComplete = false;
-		int seconds = 0;
+		int seconds = 1;
 		int frame = 0;
 		int mainFJ, subFLeft;
 		int timer = 0;
@@ -59,6 +60,7 @@ class Animation {
 	public:
 		Animation();
 		Animation(std::string CSVlocation);
+		Animation::~Animation();
 		std::vector<std::string> readAnimCSV(std::string fileName);
 		void assignCSVContent(std::vector<std::string> content);
 
@@ -70,10 +72,11 @@ class Animation {
 		void Animation::quit();
 
 		//Getters & Setters
-		int getXPos() { return x; };
-		void setXPos(int newX) { x = newX; };
-		int getYPos() { return y; };
-		void setYPos(int newY) { y = newY; };
+		int Animation::getXPos() { return x; };
+		void Animation::setXPos(int newX) { x = newX; };
+		int Animation::getYPos() { return y; };
+		void Animation::setYPos(int newY) { y = newY; };
+		void Animation::setXYPos(int newX, int newY, bool centered);
 
 };
 

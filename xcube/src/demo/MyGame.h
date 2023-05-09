@@ -6,6 +6,7 @@
 struct GameKey {
 	Point2 pos;
 	bool isAlive;
+	int fruitType;
 };
 
 class MyGame : public AbstractGame {
@@ -20,6 +21,20 @@ class MyGame : public AbstractGame {
 		int score, numKeys, lives;
 		bool gameWon;
 		Animation* anim;
+
+		int facing = 0;
+		bool still = true;
+		//player character anims
+		Animation* aniForward;
+		Animation* aniDownwards;
+		Animation* aniRight;
+		Animation* aniLeft;
+		Animation* aniFStill;
+		Animation* aniDStill;
+		Animation* aniRStill;
+		Animation* aniLStill;
+		//fruit anims
+		Animation* aniBanana;
 
 		void handleKeyEvents();
 		void update();

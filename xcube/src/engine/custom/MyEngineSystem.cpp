@@ -189,12 +189,37 @@ void Animation::assignCSVContent(std::vector<std::string> content)
 					}
 					else
 					{
-						debug("Animation lacks JSON file.");
-						jsonFile = false;
+						animFlip = SDL_FLIP_NONE;
+						debug("Animation will be not be flipped.");
 					}
 				}
 				catch (const std::invalid_argument& e) { debug("Animation lacks JSON file."); }
 				catch (const std::out_of_range& e) { debug("Animation lacks JSON file."); }
+				break;
+			case 12: //Will the animation be looped
+				try { //catching if nothing is entered into the field
+					int locLen = content[12].length();
+					if (locLen > 0)
+					{
+						if (content[12] == "true" || content[12] == "loopable")
+						{
+							looped = true;
+							debug("Animation will be looped.");
+						}
+						else
+						{
+							looped = false;
+							debug("Animation will not be looped.");
+						}
+					}
+					else
+					{
+						debug("Animation will not be looped.");
+						looped = false;
+					}
+				}
+				catch (const std::invalid_argument& e) { debug("Animation will not be looped."); }
+				catch (const std::out_of_range& e) { debug("Animation will not be looped."); }
 				break;
 			default:
 				try {//keyframes must be entered from 0
@@ -255,6 +280,20 @@ void Animation::preload() // change to just preload json
 	}
 }
 
+void Animation::setXYPos(int newX, int newY, bool centered) 
+{
+	if (centered)
+	{
+		x = newX - (spW / 2);
+		y = newY - (spH / 2);
+	}
+	else
+	{
+		x = newX;
+		y = newY;
+	}
+}
+
 void Animation::render(std::shared_ptr<GraphicsEngine> gfx)
 {
 	if (run)
@@ -273,7 +312,7 @@ void Animation::render(std::shared_ptr<GraphicsEngine> gfx)
 			currFrame = keyFrames[frameNum];
 			//std::cout << "curr frame: " << currFrame;
 			srcRect = chooseSprite(currFrame);
-			destRect = new SDL_Rect{ 0,0,spW * scW,spH * scH }; // this will change if the character moves!
+			destRect = new SDL_Rect{ x,y,spW * scW,spH * scH }; // this will change if the character moves!
 		}
 		//check source and dest rects are not NULL
 		if (destRect != NULL && gfx != NULL)
@@ -292,10 +331,8 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 {
 	if (run)
 	{
-		if (SDL_GetTicks() > 2800) // 2.8 second grace period after loading
+		if (SDL_GetTicks() > 3000) // 3 second grace period after loading
 		{
-			//debug("Within Animation grace period.");
-
 			if (seconds * keyframe + 1 < playBackTime)
 			{
 				// check fps and limit the animation to the fps of the game
@@ -311,10 +348,8 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 					if (frame < frameRate)
 					{
 						// set up the needed variables to render frames
-						if (frameStarted == false)
+						if (frameStarted == false) //frames reset
 						{
-							//debug("frames reset");
-							//std::cout << currFR;
 							frameStarted = true;
 							addFrames = false;
 							mainFJ = currFR / frameRate;
@@ -326,7 +361,6 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 							// render current for the normal amount of frames
 							if (timer == mainFJ && subFLeft != 0)
 							{
-								//debug("next keyframe");
 								frame += 1;
 								addFrames = true;
 								timer = 0;
@@ -334,14 +368,12 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 							}
 							else if (timer == mainFJ && subFLeft == 0)
 							{
-								//debug("next keyframe");
 								frame += 1;
 								timer = 0;
 								return keyframe + 1;
 							}
 							else
 							{
-								//debug("curr keyframe");
 								timer += 1;
 								return keyframe;
 							}
@@ -351,7 +383,6 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 							// render current for added amount of frames
 							if (timer == mainFJ + 1 && subFLeft != 0)
 							{
-								//debug("next keyframe 3");
 								addFrames = false;
 								frame += 1;
 								subFLeft -= 1;
@@ -360,7 +391,6 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 							}
 							else
 							{
-								//debug("curr keyframe");
 								timer += 1;
 								return keyframe;
 							}
@@ -368,7 +398,6 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 					}
 					else
 					{
-						//debug("second added");
 						seconds += 1;
 						frame = 0;
 						frameStarted = false;
@@ -378,12 +407,22 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 			}
 			else
 			{
-				if (pBComplete == false)
+				if (looped == false)
 				{
-					debug("Playback is completed.");
-					pBComplete = true;
+					if (pBComplete == false)
+					{
+						debug("Playback is completed.");
+						pBComplete = true;
+					}
+					return keyframe;
 				}
-				return keyframe;
+				else
+				{
+					seconds = 1;
+					frame = 0;
+					frameStarted = false;
+					return 0;
+				}
 			}
 		}
 		else
@@ -432,7 +471,7 @@ SDL_Rect* Animation::chooseSprite(int curr)
 	}
 }
 
-void Animation::quit()
+Animation::~Animation()
 {
 	SDL_DestroyTexture(texture);
 }
