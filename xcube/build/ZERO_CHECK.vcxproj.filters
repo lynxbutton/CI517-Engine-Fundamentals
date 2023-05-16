@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\build\CMakeFiles\3beba0b86ba0f52a5ca7695c2aacae05\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{AD3E6780-B24F-32D7-AAC4-54A5094598D1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

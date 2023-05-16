@@ -1,0 +1,10 @@
+^C:\USERS\104BU\ONEDRIVE - UNIVERSITY OF BRIGHTON\SJEB10_MODULES\YEAR 2\CI517 - GAME ENGINE\ENGINE\XCUBE\CMAKELISTS.TXT
+setlocal
+"C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\cmake\bin\cmake.exe" "-SC:/Users/104bu/OneDrive - University of Brighton/sjeb10_modules/Year 2/CI517 - Game Engine/Engine/xcube" "-BC:/Users/104bu/OneDrive - University of Brighton/sjeb10_modules/Year 2/CI517 - Game Engine/Engine/xcube/build" --check-stamp-file "C:/Users/104bu/OneDrive - University of Brighton/sjeb10_modules/Year 2/CI517 - Game Engine/Engine/xcube/build/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

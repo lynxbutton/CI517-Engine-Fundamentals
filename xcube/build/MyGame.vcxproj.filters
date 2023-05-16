@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\demo\Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\demo\MyGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\AbstractGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\AudioEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\EventEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\GraphicsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\PhysicsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\XCube2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\custom\MyEngineSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\demo\MyGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\AbstractGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\AudioEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\EngineCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\EventEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\GameMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\GraphicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\PhysicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\XCube2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\custom\MyEngineSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{D08997AC-E039-3D94-A850-85455E98AEDF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{55D74FD0-09F4-3629-953F-B3B4E9B11F35}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
