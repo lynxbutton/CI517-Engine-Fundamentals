@@ -3,15 +3,21 @@
 MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false), box(5, 5, 30, 30) {
 	TTF_Font * font = ResourceManager::loadFont("res/fonts/arial.ttf", 72);
 	gfx->useFont(font);
+	gfx->setWindowTitle("CI517 - Lynx Button's XCube2D Animation System."); //Easter eggs
 	gfx->setVerticalSync(true);
 
     for (int i = 0; i < numKeys; i++) {
         std::shared_ptr<GameKey> k = std::make_shared<GameKey>();
         k->isAlive = true;
         k->pos = Point2(getRandom(0, 750), getRandom(0, 550));
-		k->fruitType = 0;//getRandom(0, 3);
+		k->fruitType = getRandom(0, 4);
         gameKeys.push_back(k);
     }
+	grassTex = ResourceManager::loadTexture("Sprites/grass.png", SDL_COLOR_GRAY);
+	grassRect = new SDL_Rect{ 0,0,800,600 };
+	splat = ResourceManager::loadSound("SFX/squash.wav");
+	bgMusic = ResourceManager::loadMP3("SFX/bgDrums.mp3");
+	sfx->playMP3(bgMusic, -1);
 	//ANIMATION STARTING FUNCTS ---------------------------------------------------------------------------------
 	aniForward = new Animation("Animations/CSV/hero/heroForward.csv");
 	aniDownwards = new Animation("Animations/CSV/hero/heroDownward.csv");
@@ -24,6 +30,9 @@ MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false
 	aniRStill = new Animation("Animations/CSV/hero/heroRightStill.csv");
 
 	aniBanana = new Animation("Animations/CSV/fruit/bananaAlive.csv");
+	aniGrape = new Animation("Animations/CSV/fruit/grapeAlive.csv");
+	aniOrange = new Animation("Animations/CSV/fruit/orangeAlive.csv");
+	aniStraw = new Animation("Animations/CSV/fruit/strawberryAlive.csv");
 
 	aniForward->preload();
 	aniDownwards->preload();
@@ -36,9 +45,9 @@ MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false
 	aniRStill->preload();
 
 	aniBanana->preload();
-	
-	//anim = new Animation("Animations/CSV/testAnim.csv");
-	//anim->preload();
+	aniGrape->preload();
+	aniOrange->preload();
+	aniStraw->preload();
 }
 
 MyGame::~MyGame() {
@@ -82,11 +91,24 @@ void MyGame::update() {
 	box.x += velocity.x;
 	box.y += velocity.y;
 
-	for (auto key : gameKeys) {
-		if (key->isAlive && box.contains(key->pos)) {
+	for (auto key : gameKeys) { // have it check it is within the box
+		bool within = false;
+		if(key->isAlive)
+		{
+			Point2 topLeft = Point2(key->pos.x - radius, key->pos.y - radius); Point2 topRight = Point2(key->pos.x + radius, key->pos.y - radius);
+			Point2 bottomLeft = Point2(key->pos.x - radius, key->pos.y + radius); Point2 bottomRight = Point2(key->pos.x + radius, key->pos.y + radius);
+			if (box.contains(topLeft) || box.contains(topRight) || box.contains(bottomLeft) || box.contains(bottomRight))
+			{
+				within = true;
+			}
+		}
+		if (within)
+		{
 			score += 200;
 			key->isAlive = false;
 			numKeys--;
+			sfx->playSound(splat);
+			within = false;
 		}
 	}
 
@@ -111,20 +133,34 @@ void MyGame::update() {
 }
 
 void MyGame::render() {
-	gfx->setDrawColor(SDL_COLOR_RED);
+	gfx->drawTexture(grassTex, grassRect, SDL_FLIP_NONE);
+	//gfx->setDrawColor(SDL_COLOR_RED);
 	//gfx->drawRect(box); //uncomment for debugging
 
-	gfx->setDrawColor(SDL_COLOR_YELLOW);
+	//gfx->setDrawColor(SDL_COLOR_YELLOW);
 	for (auto key : gameKeys)
 		if (key->isAlive)
 		{
-			gfx->drawCircle(key->pos, 5);
+			//gfx->drawCircle(key->pos, 5); //uncomment for debugging
 			if (key->fruitType == 0)
 			{
-				//debug("fruit type is banana");
-				//std::cout <<  key->pos.x;
 				aniBanana->setXYPos(key->pos.x, key->pos.y, true);
-				//aniBanana->render(gfx);
+				aniBanana->render(gfx);
+			}
+			else if (key->fruitType == 1)
+			{
+				aniGrape->setXYPos(key->pos.x, key->pos.y, true);
+				aniGrape->render(gfx);
+			}
+			else if (key->fruitType == 2)
+			{
+				aniStraw->setXYPos(key->pos.x, key->pos.y, true);
+				aniStraw->render(gfx);
+			}
+			else if (key->fruitType == 3)
+			{
+				aniOrange->setXYPos(key->pos.x, key->pos.y, true);
+				aniOrange->render(gfx);
 			}
 		}
 
@@ -170,7 +206,7 @@ void MyGame::render() {
 }
 
 void MyGame::renderUI() {
-	gfx->setDrawColor(SDL_COLOR_AQUA);
+	gfx->setDrawColor(SDL_COLOR_GREEN);
 	std::string scoreStr = std::to_string(score);
 	gfx->drawText(scoreStr, 780 - scoreStr.length() * 50, 25);
 

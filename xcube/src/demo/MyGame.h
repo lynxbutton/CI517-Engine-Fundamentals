@@ -35,6 +35,16 @@ class MyGame : public AbstractGame {
 		Animation* aniLStill;
 		//fruit anims
 		Animation* aniBanana;
+		Animation* aniGrape;
+		Animation* aniOrange;
+		Animation* aniStraw;
+
+		SDL_Texture* grassTex;
+		SDL_Rect* grassRect;
+
+		int radius = 40;
+		Mix_Chunk* splat;
+		Mix_Music* bgMusic;
 
 		void handleKeyEvents();
 		void update();

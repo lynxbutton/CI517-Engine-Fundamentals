@@ -264,14 +264,14 @@ void Animation::preload() // change to just preload json
 		if (jsonFile)
 		{
 			//act for json file.
-			debug("theres a json?");
+			debug("This animation has an attached JSON file.");
 		}
 		else
 		{
 			debug("Sprites will be rendered without JSON file.");
 		}
 		
-		texture = ResourceManager::loadTexture(spriteSheetLoc, SDL_COLOR_WHITE);
+		texture = ResourceManager::loadTexture(spriteSheetLoc, SDL_COLOR_GRAY);
 		if (texture == nullptr)
 		{
 			debug("Texture is null and cannot be loaded.");
@@ -333,7 +333,7 @@ int Animation::changeSprite(std::shared_ptr<GraphicsEngine> gfx, int keyframe)
 	{
 		if (SDL_GetTicks() > 3000) // 3 second grace period after loading
 		{
-			if (seconds * keyframe + 1 < playBackTime)
+			if (keyframe + 1 < playBackTime)
 			{
 				// check fps and limit the animation to the fps of the game
 				int currFR = gfx->getAverageFPS();
