@@ -20,7 +20,6 @@ class MyGame : public AbstractGame {
 		/* GAMEPLAY */
 		int score, numKeys, lives;
 		bool gameWon;
-		Animation* anim;
 
 		int facing = 0;
 		bool still = true;
@@ -42,7 +41,7 @@ class MyGame : public AbstractGame {
 		SDL_Texture* grassTex;
 		SDL_Rect* grassRect;
 
-		int radius = 40;
+		int radius = 20;
 		Mix_Chunk* splat;
 		Mix_Music* bgMusic;
 

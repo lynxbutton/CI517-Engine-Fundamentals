@@ -18,6 +18,7 @@ MyGame::MyGame() : AbstractGame(), score(0), lives(3), numKeys(5), gameWon(false
 	splat = ResourceManager::loadSound("SFX/squash.wav");
 	bgMusic = ResourceManager::loadMP3("SFX/bgDrums.mp3");
 	sfx->playMP3(bgMusic, -1);
+
 	//ANIMATION STARTING FUNCTS ---------------------------------------------------------------------------------
 	aniForward = new Animation("Animations/CSV/hero/heroForward.csv");
 	aniDownwards = new Animation("Animations/CSV/hero/heroDownward.csv");

@@ -40,6 +40,6 @@ C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - G
 C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\GameMath.h(114,33): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\GameMath.h(114,36): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
 C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\engine\GameMath.h(114,36): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\demo\MyGame.cpp(211,58): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\src\demo\MyGame.cpp(212,58): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
   Generating Code...
   MyGame.vcxproj -> C:\Users\104bu\OneDrive - University of Brighton\sjeb10_modules\Year 2\CI517 - Game Engine\Engine\xcube\build\Debug\MyGame.exe
